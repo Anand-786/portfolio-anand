@@ -33,16 +33,18 @@ function Projects({projects}: Props) {
             {projects?.map((project, i) => (
                 <div key={project?._id} className='w-screen flex-shrink-0 snap-center flex flex-col space-y-0 
                 items-center justify-center p-20 md:p-2 h-screen z-40'>
+                    <a href={project?.linkToBuild} target='_blank' className='cursor-pointer'>
                         <motion.img 
-                        initial={{y: -300, opacity: 0}} 
-                        transition={{duration: 1.2}} 
-                        whileInView={{opacity: 1, y: 0}} 
-                        viewport={{once: true}} 
-                        src={urlFor(project?.image).url()} 
-                        alt='' className='h-[485px] w-[665px] rounded-md shadow-xl shadow-black object-contain' />
+                            initial={{y: -300, opacity: 0}} 
+                            transition={{duration: 1.2}} 
+                            whileInView={{opacity: 1, y: 0}} 
+                            viewport={{once: true}} 
+                            src={urlFor(project?.image).url()} 
+                            alt='' className='h-[485px] w-[665px] rounded-md shadow-xl shadow-black object-contain' />
+                    </a>
 
                     <div className='space-y-0 px-0 md:px-6'>
-                        <h4 className='text-md sm:text-2xl font-semibold text-center'>
+                        <h4 className='relative text-md sm:text-2xl font-semibold text-center items-center'>
                             <span className='underline underline-offset-4 decoration-[3px] decoration-black'>
                                 Case Study {i+1} of {projects.length}:</span> {project?.title} {<span
                                  className='space-x-2 text-[#f2aa4cff] text-sm sm:text-xl'>[
@@ -51,7 +53,13 @@ function Projects({projects}: Props) {
                                             <p>{(i!=0)?', ':' '}{technology.title}</p>
                                         </div>
                                     ))}
-                                ]</span>}
+                                ]
+                            </span>}
+                            <a href={project?.linkToBuild} target='_blank' className='absolute top-[6px] inline-flex pl-2 cursor-pointer hover:scale-110 transition duration-200 ease-out'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                    </svg>
+                            </a>
                         </h4>
 
                         <p className='text-sm sm:text-lg text-center md:text-left pb-1'>
